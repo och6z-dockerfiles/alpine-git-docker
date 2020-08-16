@@ -1,0 +1,20 @@
+* Git on Alpine Linux
+#+BEGIN_SRC sh
+docker build \
+    --no-cache \
+    --build-arg IMAGE_VERSION=latest \
+    --file Dockerfile.alpine \
+    --tag image-name:version .
+#+END_SRC
+#+BEGIN_SRC sh
+docker volume create \
+    --driver local \
+    --name volume-name
+#+END_SRC
+#+BEGIN_SRC sh
+docker run \
+    --interactive \
+    --tty \
+    --mount type=volume,source=volume-name,target=/home \
+    --name container-name image-name:version
+#+END_SRC
